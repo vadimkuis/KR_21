@@ -1,0 +1,23 @@
+<article class="advantages" #container>
+    <section class="container">
+        <section class="advantages-content">
+            <section class="advantages-info">
+                <h1 class="advantages-info-title">Мы печём для вас вкуснейшие макаруны уже более 10 лет</h1>
+                <section class="advantages-info-text">
+                    Все пироженки мы готовим только из натуральных и качественных продуктов, без консервантов,
+                    ароматизаторов, красителей. Используем в приготовлении сливочное масло 82,5%, без дрожжей,
+                    маргарина,
+                    разрыхлителей и улучшителей муки.
+                </section>
+            </section>
+            <section class="advantages-image">
+                <img src="assets/image/big-maccaroon.png" alt="Big maccaroon">
+            </section>
+        </section>
+        <section class="advantages-items">
+            <advantage-item *ngFor="let advantage of advantages; let index = index" [advantage]="advantage"
+                [index]="index">
+            </advantage-item>
+        </section>
+    </section>
+</article>

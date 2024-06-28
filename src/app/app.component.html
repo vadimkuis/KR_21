@@ -1,0 +1,142 @@
+<header class="header">
+  <section class="container">
+    <a href="#" class="logo">macaroons</a>
+    <nav class="menu" id="menu">
+      <section class="menu-close">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
+          <g>
+            <g>
+              <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872
+c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872
+c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052
+L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116
+c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952
+c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116
+c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z" />
+            </g>
+          </g>
+        </svg>
+      </section>
+      <ul class="menu-list">
+        <li class="menu-item"><a (click)="scrollTo(productsElement)">Пироженки</a></li>
+        <li class="menu-item">
+          <a (click)="scrollTo(advantagesElement.container.nativeElement)">О нас</a>
+        </li>
+        <li class="menu-item"><a (click)="scrollTo(orderElement)">Оформить заказ</a></li>
+      </ul>
+    </nav>
+    <span class="phone">{{phoneNumber | phoneFormat}}</span>
+    <section class="burger" id="burger">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="22px">
+        <path fill-rule="evenodd" fill="rgb(130, 19, 40)"
+          d="M0.000,-0.000 L39.1000,-0.000 L39.1000,2.0000 L0.000,2.0000 L0.000,-0.000 Z" />
+        <path fill-rule="evenodd" fill="rgb(130, 19, 40)"
+          d="M0.000,10.000 L39.1000,10.000 L39.1000,12.000 L0.000,12.000 L0.000,10.000 Z" />
+        <path fill-rule="evenodd" fill="rgb(130, 19, 40)"
+          d="M0.000,20.0000 L39.1000,20.0000 L39.1000,22.0000 L0.000,22.0000 L0.000,22.0000 Z" />
+      </svg>
+    </section>
+  </section>
+</header>
+
+<main class="main">
+  <section class="container">
+    <section class="main-info">
+      <h1 class="main-info-title">Мягкие французские пироженки Macaroons</h1>
+      <section class="main-info-text">
+        Побалуйте себя и своих близких самыми вкусными и ароматными домашними пироженками Macaroon!
+      </section>
+      <section class="main-info-action">
+        <button class="button main-info-btn" (click)="scrollTo(productsElement)" appHoverBackground>Выбрать
+          макарун</button>
+      </section>
+    </section>
+    <section class="main-image">
+      <img src="assets/image/main_img.png" alt="Box maccaroons">
+    </section>
+  </section>
+</main>
+
+<comp-advantages #advantagesElement></comp-advantages>
+
+<article class="products" #productsElement>
+  <section class="container">
+    <h1 class="products-title">Выберите свой макарун</h1>
+    <section class="products-items">
+      <comp-product *ngFor="let product of products; let i = index" [product]="product" [index]="i"
+        [length]="products.length" (addToCartEvent)="addToCart($event)"></comp-product>
+    </section>
+  </section>
+</article>
+
+<article class="order" #orderElement>
+  <section class="container">
+    <section class="order-image">
+      <img src="assets/image/macarons.png" alt="Macaroons">
+    </section>
+    <form class="order-form">
+      <h1 class="order-form-title">Закажите макарун!</h1>
+      <section class="order-form-text">
+        Выберите понравившийся макарун, заполните форму и ожидайте звонка нашего пекаря!
+      </section>
+      <section class="order-form-items">
+        <section class="order-form-item">
+          <h3 class="order-form-item-title">Ваш выбор</h3>
+          <input name="productTitle" type="text" placeholder="Напишите, что хотите заказать..."
+            [(ngModel)]="formValues.productTitle">
+          <p class="error-input">Необходимо ввести заказ</p>
+        </section>
+        <section class="order-form-item">
+          <h3 class="order-form-item-title">Заполните данные для заказа</h3>
+          <input name="name" type="text" placeholder="Ваше имя" [(ngModel)]="formValues.name">
+          <p class="error-input">Необходимо ввести имя</p>
+          <input name="phone" type="text" placeholder="+375 (__) ___ - __ - __" [(ngModel)]="formValues.phone">
+          <p class="error-input">Необходимо ввести номер телефона</p>
+          <button type="button" class="button order-form-btn" appHoverBackground>Оформить заказ</button>
+        </section>
+      </section>
+    </form>
+    <section class="order-card">
+      <p>Спасибо за Ваш заказ. Мы скоро свяжемся с Вами!</p>
+    </section>
+    <section class="strawberry1">
+      <img src="assets/image/strawberry1.png" alt="strawberry1">
+    </section>
+    <section class="strawberry2">
+      <img src="assets/image/strawberry2.png" alt="strawberry2">
+    </section>
+  </section>
+</article>
+
+<footer class="footer">
+  <section class="container">
+    <section class="footer-info">
+      <a href="#" class="logo">macaroons</a>
+      <span>Все права защищены, 2020</span>
+    </section>
+    <a [href]="instagramLink" class="footer-social" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256">
+        <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+          stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none"
+          font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+          <g transform="scale(8,8)">
+            <path
+              d="M11.46875,5c-3.55078,0 -6.46875,2.91406 -6.46875,6.46875v9.0625c0,3.55078 2.91406,6.46875 6.46875,6.46875h9.0625c3.55078,0 6.46875,-2.91406 6.46875,-6.46875v-9.0625c0,-3.55078 -2.91406,-6.46875 -6.46875,-6.46875zM11.46875,7h9.0625c2.47266,0 4.46875,1.99609 4.46875,4.46875v9.0625c0,2.47266 -1.99609,4.46875 -4.46875,4.46875h-9.0625c-2.47266,0 -4.46875,-1.99609 -4.46875,-4.46875v-9.0625c0,-2.47266 1.99609,-4.46875 4.46875,-4.46875zM21.90625,9.1875c-0.50391,0 -0.90625,0.40234 -0.90625,0.90625c0,0.50391 0.40234,0.90625 0.90625,0.90625c0.50391,0 0.90625,-0.40234 0.90625,-0.90625c0,-0.50391 -0.40234,-0.90625 -0.90625,-0.90625zM16,10c-3.30078,0 -6,2.69922 -6,6c0,3.30078 2.69922,6 6,6c3.30078,0 6,-2.69922 6,-6c0,-3.30078 -2.69922,-6 -6,-6zM16,12c2.22266,0 4,1.77734 4,4c0,2.22266 -1.77734,4 -4,4c-2.22266,0 -4,-1.77734 -4,-4c0,-2.22266 1.77734,-4 4,-4z">
+            </path>
+          </g>
+        </g>
+      </svg>
+      <span>Мы в Instagram</span>
+    </a>
+    <span class="phone">{{phoneNumber | phoneFormat}}</span>
+  </section>
+</footer>
+
+<section class="present" (mouseover)="showPresent = true" (mouseout)="showPresent = false">
+  <img src="assets/image/cart.png" alt="Present">
+  <section class="speech" [class.show]="showPresent">
+    {{cartService.amount ? (cartService.amount | customCurrency) : 'Корзина пуста'}}
+  </section>
+  <section class="cart-counter" *ngIf="cartService.count">{{cartService.count}}</section>
+</section>

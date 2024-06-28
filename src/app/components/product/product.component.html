@@ -1,0 +1,16 @@
+<section class="products-item" [class.products-item-last]="index === length - 1">
+    <section class="products-item-image">
+        <img src="assets/image/{{product.image}}" alt="Macaroon">
+    </section>
+    <h3 class="products-item-title">{{product.name}}</h3>
+    <section class="products-item-extra">
+        <section class="products-item-info">
+            <section class="products-item-count">{{product.count}} шт.</section>
+            <section class="products-item-price">{{ product.price | customCurrency }}</section>
+        </section>
+        <section class="products-item-action">
+            <button class="button products-item-btn" [disabled]="product.count === 0" (click)="addProductToCart()"
+                appHoverBackground>Заказать</button>
+        </section>
+    </section>
+</section>
